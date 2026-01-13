@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Untuk Kamu 🌸</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ================= BASE ================= */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ffe6f0, #fff);
+    color: #444;
+    overflow-x: hidden;
+}
+
+/* ================= CONTAINER ================= */
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 50px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 5;
+}
+
+/* ================= TEXT ================= */
+h1 {
+    font-size: 2.6em;
+    color: #d63384;
+    animation: fadeDown 1.5s ease;
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    animation: fadeUp 2s ease;
+}
+
+/* ================= CARD ================= */
+.card {
+    background: white;
+    padding: 35px;
+    margin-top: 35px;
+    border-radius: 22px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+    animation: fadeUp 2.5s ease;
+}
+
+/* ================= BUTTON ================= */
+button {
+    margin-top: 30px;
+    padding: 14px 30px;
+    font-size: 1em;
+    border: none;
+    border-radius: 40px;
+    background: linear-gradient(45deg, #ff69b4, #ff85c1);
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* ================= FOOTER ================= */
+footer {
+    margin-top: 55px;
+    font-size: 0.9em;
+    color: #888;
+}
+
+/* ================= POPUP ================= */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: none;
+    z-index: 10;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: white;
+    padding: 35px 45px;
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    display: none;
+    z-index: 11;
+    text-align: center;
+    opacity: 0;
+}
+
+.popup.show {
+    animation: popupIn 0.5s ease forwards;
+}
+
+/* ================= PETALS ================= */
+.petal {
+    position: fixed;
+    top: -10%;
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(circle at 30% 30%, #ffd6e8, #ff8fbf);
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(45deg);
+    opacity: 0.8;
+    pointer-events: none;
+    animation: fall linear infinite;
+}
+
+/* ================= SPARKLES ================= */
+.sparkle {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: #ffd6e8;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: sparkle 4s infinite ease-in-out;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeDown {
+    from { opacity:0; transform: translateY(-30px); }
+    to { opacity:1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+    from { opacity:0; transform: translateY(30px); }
+    to { opacity:1; transform: translateY(0); }
+}
+
+@keyframes popupIn {
+    to { opacity:1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(120vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes sparkle {
+    0%,100% { opacity:0.2; }
+    50% { opacity:0.8; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Hai, ulfa 🌷</h1>
+
+    <div class="card">
+        <p>
+            Website kecil ini fariq buat khusus untuk kamu.  
+            Bukan karena hal besar, tapi karena kamu berarti.
+        </p>
+
+        <p>
+            Terima kasih sudah mau menjadi temanku , 
+            mendengarkan ceritaku, 
+            dan ada di saat aku membutuhkan. 
+            Itu sangat berarti bagiku.
+        </p>
+
+        <button onclick="openPopup()">Klik di sini 💌</button>
+    </div>
+
+    <footer>
+        Dibuat dengan tulus ✨
+    </footer>
+</div>
+
+<!-- POPUP -->
+<div class="overlay" id="overlay"></div>
+<div class="popup" id="popup">
+    <p style="font-size:1.25em; color:#d63384;">
+    Jangan terlalu sering tenggelam dalam pikiranmu sendiri,
+    <br>kadang dunia tidak seberat yang kamu bayangkan.
+    <br>Kamu sudah berusaha sebaik yang kamu bisa, dan itu cukup.
+    <br>Aku harap hatimu selalu tenang dan tidak lupa betapa berharganya dirimu.
+    <br>Semoga senyummu selalu ada, hari ini dan seterusnya.
+
+    </p>
+    <button onclick="closePopup()">Tutup 💖</button>
+</div>
+
+<!-- AUDIO -->
+<audio id="music" loop>
+    <source src="tulus.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("music");
+const popup = document.getElementById("popup");
+const overlay = document.getElementById("overlay");
+
+function openPopup() {
+    popup.style.display = "block";
+    overlay.style.display = "block";
+    popup.classList.add("show");
+    music.play();
+}
+
+function closePopup() {
+    popup.style.display = "none";
+    overlay.style.display = "none";
+}
+
+/* Petals */
+for(let i=0;i<30;i++){
+    let p = document.createElement("div");
+    p.className = "petal";
+    p.style.left = Math.random()*100 + "vw";
+    p.style.animationDuration = 6 + Math.random()*6 + "s";
+    p.style.animationDelay = Math.random()*5 + "s";
+    document.body.appendChild(p);
+}
+
+/* Sparkles */
+for(let i=0;i<40;i++){
+    let s = document.createElement("div");
+    s.className = "sparkle";
+    s.style.left = Math.random()*100 + "vw";
+    s.style.top = Math.random()*100 + "vh";
+    s.style.animationDelay = Math.random()*5 + "s";
+    document.body.appendChild(s);
+}
+</script>
+
+</body>
+</html>
